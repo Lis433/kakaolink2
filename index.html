@@ -1,41 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>카카오톡 공유 테스트</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+</head>
+<body>
+
+<!-- 공유 버튼 -->
+<button id="kakao-link-btn" style="padding:10px 20px; font-size:16px;">카카오톡 공유</button>
+
 <script>
-Kakao.init('a617e64c996d7ce4870d5102a200c807'); // 본인 키
+  // 1️⃣ Kakao JavaScript 키 설정
+  // Kakao Developers에서 발급받은 JavaScript 키로 바꿔주세요
+  Kakao.init('a617e64c996d7ce4870d5102a200c807');
 
-function sendNews() {
-  Kakao.Link.sendCustom({
-    templateId: 125056,
-    templateArgs: {
-      news1_title: "오잉이는 바보댜",
-      news1_desc: "뉴스 1 요약",
-      news1_img: "https://lis433.github.io/?url=https://lrl.kr/ciDSF",
-      news1_link: "https://lis433.github.io/?url=https://open.kakao.com/o/sEZjJA6g",
-
-      news2_title: "뉴스 2 제목",
-      news2_desc: "뉴스 2 요약",
-      news2_img: "https://lis433.github.io/my-repo/assets/img/news2.png",
-      news2_link: "https://lis433.github.io/my-repo/news2.html",
-
-      news3_title: "뉴스 3 제목",
-      news3_desc: "뉴스 3 요약",
-      news3_img: "https://lis433.github.io/my-repo/assets/img/news3.png",
-      news3_link: "https://lis433.github.io/my-repo/news3.html",
-
-      news4_title: "뉴스 4 제목",
-      news4_desc: "뉴스 4 요약",
-      news4_img: "https://lis433.github.io/my-repo/assets/img/news4.png",
-      news4_link: "https://lis433.github.io/my-repo/news4.html",
-
-      news5_title: "뉴스 5 제목",
-      news5_desc: "뉴스 5 요약",
-      news5_img: "https://lis433.github.io/my-repo/assets/img/news5.png",
-      news5_link: "https://lis433.github.io/my-repo/news5.html",
-
-      button_name: "뉴스 더보기",
-      button_link: "https://lis433.github.io/my-repo/all-news.html"
+  // 2️⃣ 공유 버튼 설정
+  Kakao.Link.createDefaultButton({
+    container: '#kakao-link-btn',
+    objectType: 'feed',  // 카드형 공유
+    content: {
+      title: 'GitHub 이미지 공유',
+      description: 'Raw 이미지를 올바르게 공유합니다.',
+      imageUrl: 'https://raw.githubusercontent.com/Lis433/JKW/main/Screenshot_20251010_131130_KakaoTalk.jpg', // Raw 이미지 URL
+      link: {
+        mobileWebUrl: 'https://github.com/Lis433/JKW',
+        webUrl: 'https://github.com/Lis433/JKW'
+      }
     },
+    buttons: [
+      {
+        title: 'GitHub 바로가기',
+        link: {
+          mobileWebUrl: 'https://github.com/Lis433/JKW',
+          webUrl: 'https://github.com/Lis433/JKW'
+        }
+      }
+    ]
   });
-}
 </script>
 
-<button onclick="sendNews()">카카오톡 뉴스 공유</button>
+</body>
+</html>
