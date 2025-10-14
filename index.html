@@ -2,49 +2,28 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <title>Kakao 공유 테스트</title>
+  <title>카카오 커스텀 템플릿 공유</title>
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
-    // ✅ 0. URL 파라미터 확인 후 자동 리다이렉트
-    const params = new URLSearchParams(window.location.search);
-    const redirectUrl = params.get('url');
-    if (redirectUrl) {
-      // 카카오 공유를 실행하지 않고 바로 이동해야 하는 경우
-      if (!window.location.href.includes('kakaoShare')) {
-        window.location.href = redirectUrl;
-      }
-    }
-
     // ✅ 1. Kakao SDK 초기화
-    Kakao.init('a617e64c996d7ce4870d5102a200c807');
+    Kakao.init('a617e64c996d7ce4870d5102a200c807'); // 본인 키로 변경!
 
-    // ✅ 2. 공유 함수 정의
-    function sendLink() {
-      Kakao.Link.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: '스트로베리 케이크',
-          description: 'Tous les Jours',
-          imageUrl: 'https://lrl.kr/bCEko',
-          link: {
-            mobileWebUrl: 'https://lis433.github.io/?url=https://zrr.kr/ndriRD',
-            webUrl: 'https://lis433.github.io/?url=https://zrr.kr/ndriRD',
-          },
+    // ✅ 2. 커스텀 템플릿 공유 함수
+    function sendCustom() {
+      Kakao.Link.sendCustom({
+        templateId: 124974, // 카카오 디벨로퍼에서 생성한 템플릿 ID로 교체
+        templateArgs: {
+          title: "크림 듬뿍 케이크",
+          desc: "Tous les Jus",
+          imgUrl: "https://lrl.kr/ciDSF",
+          linkUrl: "https://lis433.github.io/?url=https://open.kakao.com/o/sP1FnsLh",
+          buttonName: "슈붕님 받기"
         },
-        buttons: [
-          {
-            title: '선물 받기',
-            link: {
-              mobileWebUrl: 'https://lis433.github.io/?url=https://zrr.kr/ndriRD',
-              webUrl: 'https://lis433.github.io/?url=https://zrr.kr/ndriRD',
-            },
-          },
-        ],
       });
     }
   </script>
 </head>
 <body>
-  <button onclick="sendLink()">카카오톡으로 공유</button>
+  <button onclick="sendCustom()">🎉 카카오톡으로 보내기</button>
 </body>
 </html>
