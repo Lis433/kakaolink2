@@ -5,31 +5,41 @@
   <title>Kakao 공유 테스트</title>
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
-    // ✅ 1. Kakao SDK 초기화 (자바스크립트 키 넣기)
-    Kakao.init("a617e64c996d7ce4870d5102a200c807"); 
-    console.log("Kakao SDK Initialized:", Kakao.isInitialized());
-
-    // ✅ 2. URL 파라미터 확인 후 리다이렉트
+    // ✅ 0. URL 파라미터 확인 후 자동 리다이렉트
     const params = new URLSearchParams(window.location.search);
     const redirectUrl = params.get('url');
-    if (redirectUrl && !window.location.href.includes('kakaoShare')) {
-      window.location.href = redirectUrl;
+    if (redirectUrl) {
+      // 카카오 공유를 실행하지 않고 바로 이동해야 하는 경우
+      if (!window.location.href.includes('kakaoShare')) {
+        window.location.href = redirectUrl;
+      }
     }
 
-    // ✅ 3. 카카오 공유 함수
+    // ✅ 1. Kakao SDK 초기화
+    Kakao.init('a617e64c996d7ce4870d5102a200c807');
+
+    // ✅ 2. 공유 함수 정의
     function sendLink() {
       Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
-          title: ' ',
-          description: ' ',
+          title: '미쿠',
+          description: 'to 뭐시기',
           imageUrl: 'https://lrl.kr/ekwJO',
           link: {
-            mobileWebUrl: 'https://lis433.github.io/kakaolink2/?url=https://open.kakao.com/o/sEZjJA6g',
-            webUrl: 'https://lis433.github.io/kakaolink2/?url=https://open.kakao.com/o/sEZjJA6g'
-          }
+            mobileWebUrl: 'https://lis433.github.io/?url=https://open.kakao.com/o/sEZjJA6g',
+            webUrl: 'https://lis433.github.io/?url=https://open.kakao.com/o/sEZjJA6g',
+          },
         },
-        buttons: []
+        buttons: [
+          {
+            title: '미쿠 애교 보기',
+            link: {
+              mobileWebUrl: 'https://lis433.github.io/?url=https://www.youtube.com/watch?v=MxIual0m92U',
+              webUrl: 'https://lis433.github.io/?url=https://www.youtube.com/watch?v=MxIual0m92U',
+            },
+          },
+        ],
       });
     }
   </script>
@@ -38,4 +48,3 @@
   <button onclick="sendLink()">카카오톡으로 공유</button>
 </body>
 </html>
-
