@@ -2,21 +2,40 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <title>Miku 이미지 공유</title>
+  <title>Kakao 공유 테스트</title>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    // ✅ 1. Kakao SDK 초기화 (자바스크립트 키 넣기)
+    Kakao.init("a617e64c996d7ce4870d5102a200c807"); 
+    console.log("Kakao SDK Initialized:", Kakao.isInitialized());
 
-  <!-- ✅ 미리보기 (카카오톡 / 디스코드 / 트위터 등) -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content=" ">
-  <meta property="og:description" content=" ">
-  <meta property="og:image" content="https://lrl.kr/ekwJO">
-  <meta property="og:url" content="https://lis433.github.io/kakaolink2/https://open.kakao.com/o/gxgEeRdh">
+    // ✅ 2. URL 파라미터 확인 후 리다이렉트
+    const params = new URLSearchParams(window.location.search);
+    const redirectUrl = params.get('url');
+    if (redirectUrl && !window.location.href.includes('kakaoShare')) {
+      window.location.href = redirectUrl;
+    }
 
-  <!-- ✅ 모바일 최적화 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    // ✅ 3. 카카오 공유 함수
+    function sendLink() {
+      Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: ' ',
+          description: ' ',
+          imageUrl: 'https://lrl.kr/ekwJO',
+          link: {
+            mobileWebUrl: 'https://lis433.github.io/kakaolink2/?url=https://open.kakao.com/o/sEZjJA6g',
+            webUrl: 'https://lis433.github.io/kakaolink2/?url=https://open.kakao.com/o/sEZjJA6g'
+          }
+        },
+        buttons: []
+      });
+    }
+  </script>
 </head>
-<body style="margin:0; background-color:#000;">
-  <img 
-    src="https://lrl.kr/ekwJO" 
-    style="width:100%; height:auto; display:block;">
+<body>
+  <button onclick="sendLink()">카카오톡으로 공유</button>
 </body>
 </html>
+
