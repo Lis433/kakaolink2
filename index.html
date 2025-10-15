@@ -2,29 +2,21 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <title>사진만 공유</title>
-  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-  <script>
-    Kakao.init('a617e64c996d7ce4870d5102a200c807'); // 🔑 필수!
-    
-    function shareImage() {
-      Kakao.Link.sendDefault({
-        objectType: 'feed', // feed는 카드형식
-        content: {
-          title: '', // ❌ 비워도 돼요
-          description: '', // ❌ 비워도 돼요
-          imageUrl: 'https://lrl.kr/ekwJO',
-          link: {
-            mobileWebUrl: 'https://open.kakao.com/o/gq0wH6Wg',
-            webUrl: 'https://open.kakao.com/o/gq0wH6Wg'
-          },
-        },
-        buttons: [] // 🔥 버튼 완전 제거
-      });
-    }
-  </script>
+  <title>Miku 이미지 공유</title>
+
+  <!-- ✅ 미리보기 (카카오톡 / 디스코드 / 트위터 등) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content=" ">
+  <meta property="og:description" content=" ">
+  <meta property="og:image" content="https://lrl.kr/ekwJO">
+  <meta property="og:url" content="https://lis433.github.io/kakaolink2/https://open.kakao.com/o/gxgEeRdh">
+
+  <!-- ✅ 모바일 최적화 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-  <button onclick="shareImage()">카카오톡으로 사진만 공유</button>
+<body style="margin:0; background-color:#000;">
+  <img 
+    src="https://lrl.kr/ekwJO" 
+    style="width:100%; height:auto; display:block;">
 </body>
 </html>
