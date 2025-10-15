@@ -1,44 +1,30 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>카카오톡 공유 테스트</title>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <meta charset="utf-8">
+  <title>사진만 공유</title>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    Kakao.init('여기에_자신의_JAVASCRIPT_키'); // 🔑 필수!
+    
+    function shareImage() {
+      Kakao.Link.sendDefault({
+        objectType: 'feed', // feed는 카드형식
+        content: {
+          title: '', // ❌ 비워도 돼요
+          description: '', // ❌ 비워도 돼요
+          imageUrl: 'https://lrl.kr/ekwJO',
+          link: {
+            mobileWebUrl: 'https://open.kakao.com/o/gq0wH6Wg',
+            webUrl: 'https://open.kakao.com/o/gq0wH6Wg'
+          },
+        },
+        buttons: [] // 🔥 버튼 완전 제거
+      });
+    }
+  </script>
 </head>
 <body>
-
-<!-- 공유 버튼 -->
-<button id="kakao-link-btn" style="padding:10px 20px; font-size:16px;">카카오톡 공유</button>
-
-<script>
-  // 1️⃣ Kakao JavaScript 키 설정
-  // Kakao Developers에서 발급받은 JavaScript 키로 바꿔주세요
-  Kakao.init('a617e64c996d7ce4870d5102a200c807');
-
-  // 2️⃣ 공유 버튼 설정
-  Kakao.Link.createDefaultButton({
-    container: '#kakao-link-btn',
-    objectType: 'feed',  // 카드형 공유
-    content: {
-      title: 'GitHub 이미지 공유',
-      description: 'Raw 이미지를 올바르게 공유합니다.',
-      imageUrl: 'https://github.com/Lis433/kakaolink2/blob/d18060f5b03252eda7b1656f879e35508ebb32a4/Screenshot_20251010_131130_KakaoTalk.jpg', // Raw 이미지 URL
-      link: {
-        mobileWebUrl: 'https://github.com/Lis433/JKW',
-        webUrl: 'https://github.com/Lis433/JKW'
-      }
-    },
-    buttons: [
-      {
-        title: 'GitHub 바로가기',
-        link: {
-          mobileWebUrl: 'https://github.com/Lis433/JKW',
-          webUrl: 'https://github.com/Lis433/JKW'
-        }
-      }
-    ]
-  });
-</script>
-
+  <button onclick="shareImage()">카카오톡으로 사진만 공유</button>
 </body>
 </html>
